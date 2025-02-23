@@ -18,6 +18,7 @@ This project is a **Book Recommendation System** that suggests books to users ba
 │── 📂 data               # Raw dataset files
 │── 📂 env                # Virtual environment (if applicable)
 │── recommendation.ipynb  # Jupyter notebook with the recommendation model
+├── setup.py              # Installation script for packaging
 │── README.md             # Project documentation
 ```
 
@@ -37,15 +38,21 @@ This project is a **Book Recommendation System** that suggests books to users ba
    - Return a list of recommended books with their covers (image URLs).
 
 ## 📌 How to Run the Project
-### 1️⃣ Install Dependencies
-```bash
-pip install -r requirements.txt
-```
+### 1️⃣ Clone the repository
+   ```bash
+   git clone https://github.com/azzehy/BookRecommender.git
+   cd BookRecommender
+   ```
 
-### 2️⃣ Train the Model & Save It
+### 2️⃣ Install the package locally using `setup.py`:
+   ```bash
+   pip install -e .
+   ```
+
+### 3️⃣ Train the Model & Save It
 Run the **recommendation.ipynb** notebook to train the model and save it using **Pickle**.
 
-### 3️⃣ Load the Model & Make Predictions
+### 4️⃣  Load the Model & Make Predictions
 You can use the trained model to generate recommendations like this:
 ```python
 import pickle
