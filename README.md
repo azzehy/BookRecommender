@@ -2,7 +2,7 @@
 
 > A Machine Learning-powered book recommendation system built with **Streamlit**, **Scikit-learn**, and **Pickle**.
 
-![Book Recommender System](https://via.placeholder.com/800x400?text=Book+Recommender+System)
+![Book Recommender System](https://github.com/user-attachments/assets/4b8510d7-2a95-439f-bedc-d2f3aa53633d)
 
 ---
 
