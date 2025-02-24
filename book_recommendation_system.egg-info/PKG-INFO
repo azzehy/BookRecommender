@@ -1,0 +1,119 @@
+Metadata-Version: 2.2
+Name: book_recommendation_system
+Version: 0.1
+Summary: A book recommendation system using KNN-based collaborative filtering
+Home-page: https://github.com/azzehy/BookRecommender.git
+Author: Younes Az
+Author-email: yazzzeh04@gmail.com
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+Requires-Dist: numpy
+Requires-Dist: pandas
+Requires-Dist: scikit-learn
+Requires-Dist: matplotlib
+Requires-Dist: seaborn
+Requires-Dist: jupyter
+Requires-Dist: scipy
+Requires-Dist: pickle-mixin
+Dynamic: author
+Dynamic: author-email
+Dynamic: classifier
+Dynamic: description
+Dynamic: description-content-type
+Dynamic: home-page
+Dynamic: requires-dist
+Dynamic: requires-python
+Dynamic: summary
+
+# Book Recommendation System
+
+## ًں“Œ Project Overview
+This project is a **Book Recommendation System** that suggests books to users based on their reading history and preferences of similar users. It utilizes **Item-Based Collaborative Filtering** with the **K-Nearest Neighbors (KNN) algorithm** to find books similar to the ones a user has liked.
+
+## ًں› ï¸ڈ Technologies Used
+- **Python**
+- **Pandas & NumPy** (for data processing)
+- **Scikit-learn** (for KNN-based recommendations)
+- **Seaborn & Matplotlib** (for data visualization)
+- **Pickle** (for model persistence)
+- **Jupyter Notebook** (for development & testing)
+
+## ًں“‚ Project Structure
+```
+ًں“‚ book-recommender-system
+â”‚â”€â”€ ًں“‚ artifacts          # Stores trained models & processed data
+â”‚â”€â”€ ًں“‚ data               # Raw dataset files
+â”‚â”€â”€ ًں“‚ env                # Virtual environment (if applicable)
+â”‚â”€â”€ recommendation.ipynb  # Jupyter notebook with the recommendation model
+â”œâ”€â”€ setup.py              # Installation script for packaging
+â”‚â”€â”€ README.md             # Project documentation
+```
+
+## ًںڑ€ How It Works
+1. **Data Preprocessing**:
+   - Load book ratings dataset.
+   - Remove duplicates and filter low-rated books.
+   - Create a pivot table mapping users to books.
+
+2. **Model Training (Collaborative Filtering - KNN)**:
+   - Convert data into a sparse matrix.
+   - Train a **KNN model** using **Brute Force Search**.
+   - Find similar books based on the nearest neighbors.
+
+3. **Generating Recommendations**:
+   - For a given book, find its closest books based on cosine similarity.
+   - Return a list of recommended books with their covers (image URLs).
+
+## ًں“Œ How to Run the Project
+### 1ï¸ڈâƒ£ Clone the repository
+   ```bash
+   git clone https://github.com/azzehy/BookRecommender.git
+   cd BookRecommender
+   ```
+
+### 2ï¸ڈâƒ£ Install the package locally using `setup.py`:
+   ```bash
+   pip install -e .
+   ```
+
+### 3ï¸ڈâƒ£ Train the Model & Save It
+Run the **recommendation.ipynb** notebook to train the model and save it using **Pickle**.
+
+### 4ï¸ڈâƒ£  Load the Model & Make Predictions
+You can use the trained model to generate recommendations like this:
+```python
+import pickle
+import numpy as np
+
+# Load model
+model = pickle.load(open('artifacts/model.pkl', 'rb'))
+book_names = pickle.load(open('artifacts/book_names.pkl', 'rb'))
+book_pivot = pickle.load(open('artifacts/book_pivot.pkl', 'rb'))
+
+# Get recommendations for a book
+def recommend_book(book_title, n_recommendations=5):
+    book_index = np.where(book_pivot.index == book_title)[0][0]
+    distances, indices = model.kneighbors(book_pivot.iloc[book_index, :].values.reshape(1, -1), n_neighbors=n_recommendations + 1)
+    recommendations = [book_pivot.index[i] for i in indices[0][1:]]
+    return recommendations
+
+print(recommend_book("Harry Potter and the Sorcerer's Stone (Book 1)"))
+```
+
+## ًںژ¯ Future Improvements
+âœ… Implement **Neural Collaborative Filtering (NCF) with TensorFlow**
+âœ… Improve **UI with a web interface (Flask/React)**
+âœ… Add **Content-Based Filtering** for better recommendations
+
+---
+### ًں“Œ Notes
+- If you want to switch to **TensorFlow-based recommendation models**, we need to implement **Neural Collaborative Filtering (NCF)**.
+- The system currently **compares books based on user interactions**, making it an **item-based collaborative filtering system**.
+- **Feel free to improve and extend this project!** ًںڑ€
+
+---
+ًں“Œ *Contributions & feedback are welcome!* ًںکƒ
+
